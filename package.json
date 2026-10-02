@@ -1,0 +1,33 @@
+{
+  "name": "lockdiff",
+  "version": "0.1.0",
+  "description": "Review lockfile changes like a human: what was added, bumped, or looks tampered with. Offline, zero dependencies.",
+  "keywords": ["lockfile", "supply-chain", "dependencies", "package-lock", "cargo", "uv", "pnpm", "yarn", "code-review", "cli"],
+  "license": "MIT",
+  "author": "Nithinfgs",
+  "homepage": "https://github.com/Nithinfgs/lockdiff#readme",
+  "repository": { "type": "git", "url": "git+https://github.com/Nithinfgs/lockdiff.git" },
+  "bugs": { "url": "https://github.com/Nithinfgs/lockdiff/issues" },
+  "type": "module",
+  "bin": { "lockdiff": "dist/cli.js" },
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": { ".": { "types": "./dist/index.d.ts", "default": "./dist/index.js" } },
+  "files": ["dist", "action.yml", "README.md", "LICENSE"],
+  "engines": { "node": ">=18" },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "prepare": "npm run build",
+    "typecheck": "tsc -p tsconfig.test.json --noEmit",
+    "lint": "biome check src test scripts",
+    "format": "biome check --write src test scripts",
+    "test": "node scripts/run-tests.mjs",
+    "pretest": "npm run build && tsc -p tsconfig.test.json",
+    "demo": "node scripts/make-demo.mjs"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.5.15",
+    "@types/node": "^20.19.0",
+    "typescript": "^5.9.0"
+  }
+}
