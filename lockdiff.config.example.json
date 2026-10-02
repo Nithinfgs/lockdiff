@@ -1,0 +1,5 @@
+{
+  "ignore": ["some-internal-package"],
+  "disableRules": ["prerelease"],
+  "failOn": "high"
+}

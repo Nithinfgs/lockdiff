@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1012" height="513" viewBox="0 0 1012 513" role="img" aria-label="lockdiff terminal output flagging a changed hash, an insecure source, a new install script, a look-alike package name and a downgrade">
+  <style>
+    .l { font: 13.5px ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; fill: #c9d1d9; opacity: 0; animation: show .01s linear forwards; }
+    @keyframes show { to { opacity: 1; } }
+    @media (prefers-reduced-motion: reduce) { .l { animation: none; opacity: 1; } }
+  </style>
+  <rect width="1012" height="513" rx="10" fill="#0d1117"/>
+  <rect width="1012" height="28" rx="10" fill="#161b22"/>
+  <rect y="18" width="1012" height="10" fill="#161b22"/>
+  <circle cx="18" cy="14" r="5" fill="#ff5f56"/><circle cx="36" cy="14" r="5" fill="#ffbd2e"/><circle cx="54" cy="14" r="5" fill="#27c93f"/>
+  <text x="22" y="50" class="l" style="animation-delay:0.15s" xml:space="preserve"><tspan fill="#8b949e">$</tspan><tspan fill="#c9d1d9"> lockdiff before/package-lock.json after/package-lock.json --only-risks</tspan></text>
+  <text x="22" y="71" class="l" style="animation-delay:0.22s" xml:space="preserve"></text>
+  <text x="22" y="92" class="l" style="animation-delay:0.29s" xml:space="preserve"><tspan fill="#c9d1d9" font-weight="700">after/package-lock.json</tspan></text>
+  <text x="22" y="113" class="l" style="animation-delay:0.36s" xml:space="preserve"><tspan fill="#c9d1d9">  </tspan><tspan fill="#7ee787">+7 added</tspan><tspan fill="#c9d1d9">   </tspan><tspan fill="#ff7b72">−1 removed</tspan><tspan fill="#c9d1d9">   </tspan><tspan fill="#79c0ff">↑8 upgraded</tspan><tspan fill="#c9d1d9">   </tspan><tspan fill="#e3b341">↓1 downgraded</tspan><tspan fill="#c9d1d9">   </tspan><tspan fill="#d2a8ff">≠1 modified in place</tspan></text>
+  <text x="22" y="134" class="l" style="animation-delay:0.43s" xml:space="preserve"><tspan fill="#c9d1d9">  </tspan><tspan fill="#c9d1d9" font-weight="700">risk signals:</tspan><tspan fill="#c9d1d9"> </tspan><tspan fill="#ff7b72">4 high</tspan><tspan fill="#c9d1d9">, </tspan><tspan fill="#e3b341">4 medium</tspan></text>
+  <text x="22" y="155" class="l" style="animation-delay:0.50s" xml:space="preserve"></text>
+  <text x="22" y="176" class="l" style="animation-delay:0.57s" xml:space="preserve"><tspan fill="#c9d1d9">  </tspan><tspan fill="#c9d1d9" font-weight="700">REVIEW THESE</tspan></text>
+  <text x="22" y="197" class="l" style="animation-delay:0.64s" xml:space="preserve"><tspan fill="#c9d1d9">  </tspan><tspan fill="#ff7b72">✖ HIGH</tspan><tspan fill="#c9d1d9"> fast-uuid-lite@3.1.0 has a different hash than before  </tspan><tspan fill="#8b949e">integrity-changed</tspan></text>
+  <text x="22" y="218" class="l" style="animation-delay:0.71s" xml:space="preserve"><tspan fill="#c9d1d9">           </tspan><tspan fill="#8b949e">sha512-4CWhuNitpxf… became sha512-Qy1jXFsj/JR…. Same version, different bytes.</tspan></text>
+  <text x="22" y="239" class="l" style="animation-delay:0.78s" xml:space="preserve"><tspan fill="#c9d1d9">  </tspan><tspan fill="#ff7b72">✖ HIGH</tspan><tspan fill="#c9d1d9"> legacy-widget@2.1.0 is fetched over http  </tspan><tspan fill="#8b949e">insecure-transport</tspan></text>
+  <text x="22" y="260" class="l" style="animation-delay:0.85s" xml:space="preserve"><tspan fill="#c9d1d9">           </tspan><tspan fill="#8b949e">Source: registry:packages.internal.example</tspan></text>
+  <text x="22" y="281" class="l" style="animation-delay:0.92s" xml:space="preserve"><tspan fill="#c9d1d9">  </tspan><tspan fill="#ff7b72">✖ HIGH</tspan><tspan fill="#c9d1d9"> legacy-widget source changed: registry:registry.npmjs.org → registry:packages.internal.example  </tspan><tspan fill="#8b949e">source-changed</tspan></text>
+  <text x="22" y="302" class="l" style="animation-delay:0.99s" xml:space="preserve"><tspan fill="#c9d1d9">  </tspan><tspan fill="#ff7b72">✖ HIGH</tspan><tspan fill="#c9d1d9"> quickparse@1.5.0 now runs code at install time  </tspan><tspan fill="#8b949e">install-script-gained</tspan></text>
+  <text x="22" y="323" class="l" style="animation-delay:1.06s" xml:space="preserve"><tspan fill="#c9d1d9">           </tspan><tspan fill="#8b949e">The previous version did not. Review what changed in its package.json scripts or build setup.</tspan></text>
+  <text x="22" y="344" class="l" style="animation-delay:1.13s" xml:space="preserve"><tspan fill="#c9d1d9">  </tspan><tspan fill="#e3b341">▲ MED </tspan><tspan fill="#c9d1d9"> crossenv looks like "cross-env"  </tspan><tspan fill="#8b949e">look-alike-name</tspan></text>
+  <text x="22" y="365" class="l" style="animation-delay:1.20s" xml:space="preserve"><tspan fill="#c9d1d9">           </tspan><tspan fill="#8b949e">Could be legitimate. Confirm the maintainer and repository before merging.</tspan></text>
+  <text x="22" y="386" class="l" style="animation-delay:1.27s" xml:space="preserve"><tspan fill="#c9d1d9">  </tspan><tspan fill="#e3b341">▲ MED </tspan><tspan fill="#c9d1d9"> esbuild@0.21.5 runs code at install time  </tspan><tspan fill="#8b949e">install-script-new</tspan></text>
+  <text x="22" y="407" class="l" style="animation-delay:1.34s" xml:space="preserve"><tspan fill="#c9d1d9">  </tspan><tspan fill="#e3b341">▲ MED </tspan><tspan fill="#c9d1d9"> my-fork@0.0.1 comes from git:github.com  </tspan><tspan fill="#8b949e">non-registry-source</tspan></text>
+  <text x="22" y="428" class="l" style="animation-delay:1.41s" xml:space="preserve"><tspan fill="#c9d1d9">           </tspan><tspan fill="#8b949e">Git and URL dependencies skip the registry's immutability guarantees.</tspan></text>
+  <text x="22" y="449" class="l" style="animation-delay:1.48s" xml:space="preserve"><tspan fill="#c9d1d9">  </tspan><tspan fill="#e3b341">▲ MED </tspan><tspan fill="#c9d1d9"> semver went backwards: 7.6.0 → 7.5.4  </tspan><tspan fill="#8b949e">downgrade</tspan></text>
+  <text x="22" y="470" class="l" style="animation-delay:1.55s" xml:space="preserve"><tspan fill="#c9d1d9">  </tspan><tspan fill="#8b949e">… 2 more, including informational (use --all)</tspan></text>
+</svg>
