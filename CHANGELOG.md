@@ -8,4 +8,5 @@ First release.
 - Git-aware comparison: working tree vs `HEAD`, any ref, `a..b` and `a...b` ranges, or two files.
 - Eleven risk rules (see `docs/rules.md`).
 - Terminal, Markdown and JSON output; `--fail-on` for CI.
+- `--demo` flag to try the tool on bundled example lockfiles.
 - GitHub Action that writes a job summary and optionally a PR comment.

@@ -35,6 +35,7 @@ Options
                                      (npm|pnpm|yarn|cargo|poetry|uv|gosum)
   --ignore <pkg,pkg>                 skip these packages
   --disable <rule,rule>              turn off rules (see --list-rules)
+  --demo                             run on the bundled example (no repo needed)
   --list-rules                       describe every rule
   --no-color                         disable ANSI colors
   -C <dir>                           run as if started in <dir>
@@ -60,6 +61,7 @@ interface Args {
   help: boolean;
   version: boolean;
   listRules: boolean;
+  demo: boolean;
 }
 
 const KINDS: LockKind[] = ["npm", "pnpm", "yarn", "cargo", "poetry", "uv", "gosum"];
@@ -77,6 +79,7 @@ function parseArgs(argv: string[]): Args {
     help: false,
     version: false,
     listRules: false,
+    demo: false,
   };
   const list = (s: string) =>
     s
@@ -102,6 +105,9 @@ function parseArgs(argv: string[]): Args {
       case "-v":
       case "--version":
         a.version = true;
+        break;
+      case "--demo":
+        a.demo = true;
         break;
       case "--list-rules":
         a.listRules = true;
@@ -195,6 +201,17 @@ export function run(argv: string[]): { out: string; code: number } {
   const failOn = args.failOn ?? config.failOn ?? "none";
 
   let report: Report;
+  if (args.demo) {
+    // dist/ in a published package, dist-test/src/ when running the test build
+    const dir = ["../examples/demo/", "../../examples/demo/"]
+      .map((rel) => fileURLToPath(new URL(rel, import.meta.url)))
+      .find((d) => existsSync(d));
+    if (!dir) throw new UserError("Bundled demo files not found.");
+    args.positional = [
+      join(dir, "before", "package-lock.json"),
+      join(dir, "after", "package-lock.json"),
+    ];
+  }
   const [first, second] = args.positional;
   if (args.positional.length > 2) throw new UserError("Too many arguments. See --help.");
   if (first && second) {

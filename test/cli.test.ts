@@ -93,3 +93,9 @@ test("built binary runs end to end", () => {
   const out = execFileSync(process.execPath, [bin, "--version"], { encoding: "utf8" });
   assert.match(out, /^\d+\.\d+\.\d+/);
 });
+
+test("--demo runs on the bundled example and exits cleanly", () => {
+  const { out, code } = run(["--demo", "--no-color", "--fail-on", "high"]);
+  assert.match(out, /integrity-changed/);
+  assert.equal(code, 1);
+});

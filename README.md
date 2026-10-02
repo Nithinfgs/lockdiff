@@ -16,11 +16,10 @@ Turns a 4,000-line <code>package-lock.json</code> change into "what changed" and
 ## Try it
 
 ```bash
-git clone https://github.com/Nithinfgs/lockdiff && cd lockdiff && npm install
-node dist/cli.js examples/demo/before/package-lock.json examples/demo/after/package-lock.json
+npx github:Nithinfgs/lockdiff --demo      # the example above, nothing to clone
 ```
 
-In your own repo, after `npm install -g github:Nithinfgs/lockdiff` (or `npx github:Nithinfgs/lockdiff`):
+In your own repo (`npx github:Nithinfgs/lockdiff`, or `npm install -g github:Nithinfgs/lockdiff` for a permanent `lockdiff` command):
 
 ```bash
 lockdiff              # working tree vs HEAD
