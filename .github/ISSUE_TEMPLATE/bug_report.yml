@@ -1,0 +1,26 @@
+name: Bug report
+description: lockdiff crashed, misparsed a lockfile, or gave a wrong result
+labels: [bug]
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened?
+      description: Include the command you ran and the output.
+    validations: { required: true }
+  - type: dropdown
+    id: kind
+    attributes:
+      label: Lockfile type
+      options: [package-lock.json, pnpm-lock.yaml, yarn.lock (classic), yarn.lock (berry), Cargo.lock, poetry.lock, uv.lock, go.sum, other]
+    validations: { required: true }
+  - type: textarea
+    id: sample
+    attributes:
+      label: Minimal lockfile snippet
+      description: The smallest before/after excerpt that reproduces it. Remove private package names and URLs.
+  - type: input
+    id: version
+    attributes:
+      label: lockdiff version and Node version
+      placeholder: "lockdiff 0.1.0, node v22.4.0"

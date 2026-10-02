@@ -1,0 +1,59 @@
+name: "lockdiff"
+description: "Summarise lockfile changes in a pull request and flag risky ones (changed hashes, install scripts, source changes, look-alike names)."
+author: "Nithinfgs"
+branding:
+  icon: lock
+  color: gray-dark
+inputs:
+  range:
+    description: "Git range to compare, e.g. origin/main...HEAD. Defaults to the pull request base...head."
+    required: false
+    default: ""
+  fail-on:
+    description: "Fail the job when a finding at or above this level exists: high, medium, low or none."
+    required: false
+    default: "none"
+  comment:
+    description: "Also post (or update) a pull request comment. Needs `pull-requests: write`."
+    required: false
+    default: "false"
+  working-directory:
+    description: "Repository directory to analyse."
+    required: false
+    default: "."
+runs:
+  using: "composite"
+  steps:
+    - name: Build lockdiff
+      shell: bash
+      run: |
+        cd "$GITHUB_ACTION_PATH"
+        npm install --ignore-scripts --no-audit --no-fund --loglevel=error
+        npm run build --silent
+    - name: Run lockdiff
+      shell: bash
+      env:
+        INPUT_RANGE: ${{ inputs.range }}
+        INPUT_FAIL_ON: ${{ inputs.fail-on }}
+        INPUT_COMMENT: ${{ inputs.comment }}
+        INPUT_DIR: ${{ inputs.working-directory }}
+        PR_BASE: ${{ github.event.pull_request.base.sha }}
+        PR_HEAD: ${{ github.event.pull_request.head.sha }}
+        PR_NUMBER: ${{ github.event.pull_request.number }}
+        GH_TOKEN: ${{ github.token }}
+      run: |
+        set -uo pipefail
+        range="$INPUT_RANGE"
+        if [ -z "$range" ] && [ -n "$PR_BASE" ]; then range="$PR_BASE...$PR_HEAD"; fi
+        if [ -z "$range" ]; then range="HEAD~1..HEAD"; fi
+        cli="$GITHUB_ACTION_PATH/dist/cli.js"
+
+        node "$cli" -C "$INPUT_DIR" "$range" --format markdown > "$RUNNER_TEMP/lockdiff.md" || exit 2
+        cat "$RUNNER_TEMP/lockdiff.md" >> "$GITHUB_STEP_SUMMARY"
+
+        if [ "$INPUT_COMMENT" = "true" ] && [ -n "$PR_NUMBER" ]; then
+          gh pr comment "$PR_NUMBER" --edit-last --create-if-none --body-file "$RUNNER_TEMP/lockdiff.md" \
+            || echo "::warning::Could not post the lockdiff comment (missing pull-requests: write?)"
+        fi
+
+        node "$cli" -C "$INPUT_DIR" "$range" --fail-on "$INPUT_FAIL_ON" --only-risks

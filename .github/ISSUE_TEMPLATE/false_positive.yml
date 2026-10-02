@@ -1,0 +1,16 @@
+name: False positive / noisy rule
+description: A finding that should not have been raised, or a risky change that was missed
+labels: [rules]
+body:
+  - type: input
+    id: rule
+    attributes:
+      label: Rule id
+      placeholder: "look-alike-name"
+    validations: { required: true }
+  - type: textarea
+    id: why
+    attributes:
+      label: Why is this wrong (or missing)?
+      description: A real-world example (package name, registry behaviour, ecosystem convention) is most useful.
+    validations: { required: true }
