@@ -26,7 +26,7 @@
     "demo": "node scripts/make-demo.mjs"
   },
   "devDependencies": {
-    "@biomejs/biome": "^2.5.15",
+    "@biomejs/biome": "^2.6.6",
     "@types/node": "^20.19.0",
     "typescript": "^5.9.0"
   }
